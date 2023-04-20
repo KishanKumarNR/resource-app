@@ -11,8 +11,7 @@ function RecentOrders() {
   useEffect(() => {
     fetch("https://engineering-task.elancoapps.com/api/resources")
       .then(response => response.json())
-      .then(result => setData(result.map((item, index) => ({
-        key: index,
+      .then(result => setData(result.map(item => ({
         name: item
       }))));
   }, []);
@@ -155,6 +154,16 @@ function RecentOrders() {
       dataIndex: 'name',
       key: 'name',
       render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
     }];
 
   return (

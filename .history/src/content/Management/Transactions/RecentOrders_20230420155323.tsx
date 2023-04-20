@@ -3,18 +3,13 @@ import { CryptoOrder } from '@/models/crypto_order';
 import RecentOrdersTable from './RecentOrdersTable';
 import { subDays } from 'date-fns';
 import { Space, Table, Tag } from 'antd';
-import { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 
 function RecentOrders() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("https://engineering-task.elancoapps.com/api/resources")
-      .then(response => response.json())
-      .then(result => setData(result.map((item, index) => ({
-        key: index,
-        name: item
-      }))));
+    fetch("")
   }, []);
   // const cryptoOrders: CryptoOrder[] = [
   //   {
@@ -155,11 +150,21 @@ function RecentOrders() {
       dataIndex: 'name',
       key: 'name',
       render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
     }];
 
   return (
     <Card>
-
+      
       <Table columns={columns} dataSource={data} />
       {/* <RecentOrdersTable cryptoOrders={cryptoOrders} /> */}
     </Card>

@@ -49,7 +49,7 @@ function ManagementUserProfile() {
           <Grid item xs={12} md={4}>
             <PopularTags />
           </Grid> */}
-          <Grid item xs={12} md={7}>
+          <Grid item xs={12} md={12}>
             <MyCards />
           </Grid>
           {/* <Grid item xs={12} md={5}>

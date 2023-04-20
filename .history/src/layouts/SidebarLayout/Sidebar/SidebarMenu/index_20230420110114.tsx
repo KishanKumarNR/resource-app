@@ -249,7 +249,7 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              Resources
+              Applications
             </ListSubheader>
           }
         >
@@ -268,7 +268,7 @@ function SidebarMenu() {
                     onClick={closeSidebar}
                     startIcon={<TableChartTwoToneIcon />}
                   >
-                    Resources
+                    Applications
                   </Button>
                 </NextLink>
               </ListItem>
@@ -279,7 +279,7 @@ function SidebarMenu() {
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
-              Applications
+              Resources
             </ListSubheader>
           }
         >
@@ -296,7 +296,7 @@ function SidebarMenu() {
                     onClick={closeSidebar}
                     startIcon={<AccountCircleTwoToneIcon />}
                   >
-                    Applications
+                    Resources
                   </Button>
                 </NextLink>
               </ListItem>

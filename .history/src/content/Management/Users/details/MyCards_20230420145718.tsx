@@ -96,10 +96,6 @@ function MyCards() {
     savedCards: 7
   };
 
-  const handleCardClick = (card: any) => {
-    // display modal data
-  }
-
   const [selectedValue, setSelectedValue] = useState('a');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -116,8 +112,8 @@ function MyCards() {
         <Grid container spacing={3}>
           {
             cards.length ? cards.map((card, index) => {
-              return (    <Grid key={index} item xs={12} sm={6}>
-                <CardCc sx={{ px: 2, pt: 2, pb: 1 }} onClick={() => handleCardClick(card)}>
+              return (          <Grid key={index} item xs={12} sm={6}>
+                <CardCc sx={{ px: 2, pt: 2, pb: 1 }}>
                   <Box display="flex" alignItems="center">
                     <CardLogo
                       src="/static/images/placeholders/logo/slack.svg"
@@ -126,6 +122,12 @@ function MyCards() {
                     <Box>
                       <Typography variant="h3" fontWeight="normal">
                         {card}
+                      </Typography>
+                      <Typography variant="subtitle2">
+                        Expires:{' '}
+                        <Typography component="span" color="text.primary">
+                          12/24
+                        </Typography>
                       </Typography>
                     </Box>
                   </Box>
