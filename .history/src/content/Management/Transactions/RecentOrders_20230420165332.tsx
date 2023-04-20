@@ -7,7 +7,6 @@ import { useEffect, useMemo, useState } from "react";
 import { Button, Modal } from 'antd';
 import { Form } from 'antd'
 import FormBuilder from 'antd-form-builder'
-import { Header } from 'antd/es/layout/layout';
 
 function RecentOrders() {
   const [data, setData] = useState([]);
@@ -74,60 +73,40 @@ function RecentOrders() {
 
   const modalColumns: any = [
     {
-      title: 'ConsumedQuantity',
-      dataIndex: 'ConsumedQuantity',
-      key: 'ConsumedQuantity',
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
       render: (text) => <a>{text}</a>,
     },
     {
-      title: 'Cost',
-      dataIndex: 'Cost',
-      key: 'Cost',
+      title: 'Age',
+      dataIndex: 'age',
+      key: 'age',
     },
     {
-      title: 'MeterCategory',
-      dataIndex: 'MeterCategory',
-      key: 'MeterCategory',
-    },
-    {
-      title: 'ResourceGroup',
-      dataIndex: 'ResourceGroup',
-      key: 'ResourceGroup',
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
     },
     {
       title: 'Tags',
       key: 'tags',
-      dataIndex: 'Tags',
-      render: (_, { Tags }) => (
+      dataIndex: 'tags',
+      render: (_, { tags }) => (
         <>
-          {Object.keys(typeof Tags === 'object' ? Tags : {})?.map((tag) => {
-            let color = tag === "app-name" ? "volcano" : 'geekblue';
-            if (tag === 'environment') {
-              color = 'green';
+          {tags.map((tag) => {
+            let color = tag.length > 5 ? 'geekblue' : 'green';
+            if (tag === 'loser') {
+              color = 'volcano';
             }
             return (
               <Tag color={color} key={tag}>
-                {Tags[tag].toUpperCase()}
+                {tag.toUpperCase()}
               </Tag>
             );
           })}
         </>
       ),
-    },
-    {
-      title: 'Location',
-      dataIndex: 'Location',
-      key: 'Location',
-    },
-    {
-      title: 'ServiceName',
-      dataIndex: 'ServiceName',
-      key: 'ServiceName',
-    },
-    {
-      title: 'Date',
-      dataIndex: 'Date',
-      key: 'Date',
     },
   ]
 
@@ -143,17 +122,8 @@ function RecentOrders() {
             }, // click row
           }
         }} />
-      <Modal centered title="Resources" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} width={1000} style={{
-        overflow: "auto",
-        height: "calc(100vh - 300px)"
-      }}>
-        
-        <Table columns={modalColumns} dataSource={resourceDetails}
-          style={{
-            overflow: "auto",
-            width: "calc(100vh)",
-            // height: "calc(100vh)"
-          }} />
+      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Table columns={columns} dataSource={resourceDetails} />
         <Form onFinish={handleFinish}>
           <FormBuilder meta={meta} />
         </Form>

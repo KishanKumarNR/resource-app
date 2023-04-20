@@ -7,7 +7,6 @@ import { useEffect, useMemo, useState } from "react";
 import { Button, Modal } from 'antd';
 import { Form } from 'antd'
 import FormBuilder from 'antd-form-builder'
-import { Header } from 'antd/es/layout/layout';
 
 function RecentOrders() {
   const [data, setData] = useState([]);
@@ -85,29 +84,19 @@ function RecentOrders() {
       key: 'Cost',
     },
     {
-      title: 'MeterCategory',
-      dataIndex: 'MeterCategory',
-      key: 'MeterCategory',
-    },
-    {
-      title: 'ResourceGroup',
-      dataIndex: 'ResourceGroup',
-      key: 'ResourceGroup',
-    },
-    {
       title: 'Tags',
       key: 'tags',
       dataIndex: 'Tags',
-      render: (_, { Tags }) => (
+      render: (_, { tags }) => (
         <>
-          {Object.keys(typeof Tags === 'object' ? Tags : {})?.map((tag) => {
+          {Object.keys(tags).map((tag) => {
             let color = tag === "app-name" ? "volcano" : 'geekblue';
             if (tag === 'environment') {
               color = 'green';
             }
             return (
               <Tag color={color} key={tag}>
-                {Tags[tag].toUpperCase()}
+                {tag.toUpperCase()}
               </Tag>
             );
           })}
@@ -115,14 +104,14 @@ function RecentOrders() {
       ),
     },
     {
-      title: 'Location',
-      dataIndex: 'Location',
-      key: 'Location',
+      title: 'Date',
+      dataIndex: 'Date',
+      key: 'Date',
     },
     {
-      title: 'ServiceName',
-      dataIndex: 'ServiceName',
-      key: 'ServiceName',
+      title: 'Date',
+      dataIndex: 'Date',
+      key: 'Date',
     },
     {
       title: 'Date',
@@ -143,17 +132,8 @@ function RecentOrders() {
             }, // click row
           }
         }} />
-      <Modal centered title="Resources" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} width={1000} style={{
-        overflow: "auto",
-        height: "calc(100vh - 300px)"
-      }}>
-        
-        <Table columns={modalColumns} dataSource={resourceDetails}
-          style={{
-            overflow: "auto",
-            width: "calc(100vh)",
-            // height: "calc(100vh)"
-          }} />
+      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Table columns={modalColumns} dataSource={resourceDetails} />
         <Form onFinish={handleFinish}>
           <FormBuilder meta={meta} />
         </Form>

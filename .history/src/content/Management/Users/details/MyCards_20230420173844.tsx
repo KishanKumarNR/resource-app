@@ -150,7 +150,7 @@ function MyCards() {
   ]
 
   useEffect(() => {
-    fetch(`https://engineering-task.elancoapps.com/api/applications/${application}`)
+    fetch(`https://engineering-task.elancoapps.com/api/resources/${resource}`)
       .then(response => response.json())
       .then(result => setResourceDetails(result));
   }, [application]);

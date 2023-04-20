@@ -7,7 +7,6 @@ import { useEffect, useMemo, useState } from "react";
 import { Button, Modal } from 'antd';
 import { Form } from 'antd'
 import FormBuilder from 'antd-form-builder'
-import { Header } from 'antd/es/layout/layout';
 
 function RecentOrders() {
   const [data, setData] = useState([]);
@@ -100,14 +99,14 @@ function RecentOrders() {
       dataIndex: 'Tags',
       render: (_, { Tags }) => (
         <>
-          {Object.keys(typeof Tags === 'object' ? Tags : {})?.map((tag) => {
+          {Object.keys(Tags)?.map((tag) => {
             let color = tag === "app-name" ? "volcano" : 'geekblue';
             if (tag === 'environment') {
               color = 'green';
             }
             return (
               <Tag color={color} key={tag}>
-                {Tags[tag].toUpperCase()}
+                {tag.toUpperCase()}
               </Tag>
             );
           })}
@@ -147,7 +146,6 @@ function RecentOrders() {
         overflow: "auto",
         height: "calc(100vh - 300px)"
       }}>
-        
         <Table columns={modalColumns} dataSource={resourceDetails}
           style={{
             overflow: "auto",

@@ -147,6 +147,8 @@ function RecentOrders() {
         overflow: "auto",
         height: "calc(100vh - 300px)"
       }}>
+        <Header>
+        </Header>
         
         <Table columns={modalColumns} dataSource={resourceDetails}
           style={{

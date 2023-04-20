@@ -150,7 +150,7 @@ function MyCards() {
   ]
 
   useEffect(() => {
-    fetch(`https://engineering-task.elancoapps.com/api/applications/${application}`)
+    fetch(`https://engineering-task.elancoapps.com/api/resources/${resource}`)
       .then(response => response.json())
       .then(result => setResourceDetails(result));
   }, [application]);
@@ -167,17 +167,8 @@ function MyCards() {
     savedCards: 7
   };
 
-    
-
-  const showModal = (data) => {
-
-    setIsModalOpen(true);
-  };
-
   const handleCardClick = (card: any) => {
     // display modal data
-    setApplication(card);
-    showModal();
   }
 
   const [selectedValue, setSelectedValue] = useState('a');
@@ -187,6 +178,13 @@ function MyCards() {
   };
 
   const handleDelete = () => {};
+
+  
+
+  const showModal = (data) => {
+    setApplication(data?.name);
+    setIsModalOpen(true);
+  };
 
   const handleOk = () => {
     setIsModalOpen(false);

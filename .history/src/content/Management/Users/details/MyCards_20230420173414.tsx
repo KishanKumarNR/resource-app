@@ -18,7 +18,6 @@ import {
 } from '@mui/material';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
-import { Space, Table, Tag, Modal } from 'antd';
 
 const AvatarAddWrapper = styled(Avatar)(
   ({ theme }) => `
@@ -86,75 +85,6 @@ const CardCc = styled(Card)(
 function MyCards() {
 
   const [cards, setCards] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [resourceDetails, setResourceDetails] = useState({});
-  const [application, setApplication] = useState("");
-
-  const modalColumns: any = [
-    {
-      title: 'ConsumedQuantity',
-      dataIndex: 'ConsumedQuantity',
-      key: 'ConsumedQuantity',
-      render: (text) => <a>{text}</a>,
-    },
-    {
-      title: 'Cost',
-      dataIndex: 'Cost',
-      key: 'Cost',
-    },
-    {
-      title: 'MeterCategory',
-      dataIndex: 'MeterCategory',
-      key: 'MeterCategory',
-    },
-    {
-      title: 'ResourceGroup',
-      dataIndex: 'ResourceGroup',
-      key: 'ResourceGroup',
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'Tags',
-      render: (_, { Tags }) => (
-        <>
-          {Object.keys(typeof Tags === 'object' ? Tags : {})?.map((tag) => {
-            let color = tag === "app-name" ? "volcano" : 'geekblue';
-            if (tag === 'environment') {
-              color = 'green';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {Tags[tag].toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-      title: 'Location',
-      dataIndex: 'Location',
-      key: 'Location',
-    },
-    {
-      title: 'ServiceName',
-      dataIndex: 'ServiceName',
-      key: 'ServiceName',
-    },
-    {
-      title: 'Date',
-      dataIndex: 'Date',
-      key: 'Date',
-    },
-  ]
-
-  useEffect(() => {
-    fetch(`https://engineering-task.elancoapps.com/api/applications/${application}`)
-      .then(response => response.json())
-      .then(result => setResourceDetails(result));
-  }, [application]);
-
 
   useEffect(() => {
     fetch("https://engineering-task.elancoapps.com/api/applications")
@@ -167,17 +97,8 @@ function MyCards() {
     savedCards: 7
   };
 
-    
-
-  const showModal = (data) => {
-
-    setIsModalOpen(true);
-  };
-
   const handleCardClick = (card: any) => {
     // display modal data
-    setApplication(card);
-    showModal();
   }
 
   const [selectedValue, setSelectedValue] = useState('a');
@@ -187,14 +108,6 @@ function MyCards() {
   };
 
   const handleDelete = () => {};
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
 
   return (
     <Card>
